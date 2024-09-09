@@ -124,5 +124,40 @@ You can configure `es2loki` using the following environment variables:
 | STATE_START_OVER        |                                    | Clean up persisted data and start over                                                             |
 | STATE_DB_URL            | postgres://127.0.0.1:5432/postgres | Database URL for `db` persistence                                                                  |
 
+## Running the Log Transfer
+
+Once everything is set up, you can run the log transfer process using the modified `example.py` file. The process will extract the logs from Elasticsearch, apply the custom label extraction logic, and ingest the logs into Loki.
+
+### Command:
+```bash
+python demo/example.py
+```
+
+The script will:
+- Retrieve documents from Elasticsearch.
+- Apply custom label extraction, as per the `extract_doc_labels` method.
+- Send the logs to Loki for aggregation and visualization.
+
+## Custom Label Extraction Logic
+
+The main logic for extracting labels is implemented in the `extract_doc_labels` method. Below are the key fields being extracted:
+
+- **Kubernetes-related labels**:
+  - `app`, `namespace`, `pod_name`, `deployment_name`, `node_name`, `container_name`
+  
+- **Container and host-related labels**:
+  - `container_runtime`, `host_os_name`, `host_os_version`
+  
+- **Agent and ECS versions**:
+  - `agent_version`, `ecs_version`
+
+- **Custom fields**:
+  - `import_month`, `imported`, `index_name`, `stream`
+
+These labels help in identifying and categorizing logs more effectively in Loki.
+
+## Debugging and Logging
+
+Debugging is enabled at the start of the method, which provides detailed output of the data being processed. You can view the log output to track how the labels are extracted and identify any issues during the process.
 
 
