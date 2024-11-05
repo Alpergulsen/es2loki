@@ -10,8 +10,6 @@ class Transfer(BaseTransfer):
         logging.basicConfig(level=logging.DEBUG)
         logger = logging.getLogger(__name__)
 
-        logger.debug("Source data: %s", source)
-
         labels = {}
 
         try:
@@ -21,11 +19,6 @@ class Transfer(BaseTransfer):
             agent = source.get("agent", {})
             ecs = source.get("ecs", {})
             log = source.get("log", {})
-
-            logger.debug("Kubernetes section: %s", kubernetes)
-            logger.debug("Host section: %s", host)
-            logger.debug("Container section: %s", container)
-            logger.debug("Agent section: %s", agent)
 
             labels.update({
                 "app": kubernetes.get("labels", {}).get("app"),

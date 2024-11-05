@@ -30,7 +30,7 @@ class BaseTransfer(Command):
 
         self.dry_run = os.getenv("DRY_RUN") == "1"
 
-        es_hosts = os.getenv("ELASTIC_HOSTS", "http://localhost:9200")
+        es_hosts = os.getenv("ELASTIC_HOSTS", "http://172.24.33.150:31366")
         es_user = os.getenv("ELASTIC_USER")
         es_password = os.getenv("ELASTIC_PASSWORD")
         self.es_index = os.getenv("ELASTIC_INDEX")

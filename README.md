@@ -21,9 +21,9 @@ Loki will receive no meaningful labels, but nevertheless - let's see how it work
 
 ```bash
 $ pip install -U es2loki
-$ ELASTIC_HOSTS=http://localhost:9200 \
-  ELASTIC_INDEX="filebeat-*" \
-  LOKI_URL=http://localhost:3100 \
+$ ELASTIC_HOSTS=http://172.24.33.150:31366/ \
+  ELASTIC_INDEX="kubernetes-pod*" \
+  LOKI_URL=http://172.24.33.141:3100 \
   python -m es2loki
 ```
 
